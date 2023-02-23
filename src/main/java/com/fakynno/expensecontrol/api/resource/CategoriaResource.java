@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categorias")
@@ -36,5 +37,10 @@ public class CategoriaResource {
         response.setHeader("Location", uri.toASCIIString());
 
         return ResponseEntity.created(uri).body(categoriaSalva);
+    }
+
+    @GetMapping("/{codigo}")
+    public Optional<Categoria> buscaPeloCodigo(@PathVariable Long codigo) {
+        return categoriaRepository.findById(codigo);
     }
 }
