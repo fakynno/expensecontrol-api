@@ -3,6 +3,7 @@ package com.fakynno.expensecontrol.api.resource;
 import com.fakynno.expensecontrol.api.model.Categoria;
 import com.fakynno.expensecontrol.api.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,7 +41,13 @@ public class CategoriaResource {
     }
 
     @GetMapping("/{codigo}")
-    public Optional<Categoria> buscaPeloCodigo(@PathVariable Long codigo) {
-        return categoriaRepository.findById(codigo);
+    public ResponseEntity<?> buscaPeloCodigo(@PathVariable Long codigo) {
+
+        Optional<Categoria> categoria = categoriaRepository.findById(codigo);
+
+        return categoria.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(categoria);
+
+        // Optional<Categoria> categoriaSalva =categoriaRepository.findById(codigo);
+
     }
 }
