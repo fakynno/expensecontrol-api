@@ -24,8 +24,7 @@ public class ExpenseControlExceptionHandler extends ResponseEntityExceptionHandl
         String mensagemUsuario = messageSource.getMessage("mensagem.invalida", null,
                 LocaleContextHolder.getLocale());
         String mensagemDesenvolvedor = ex.getCause().toString();
-        return handleExceptionInternal(ex, new Erro(mensagemUsuario, mensagemDesenvolvedor),
-                headers, HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, new Erro(mensagemUsuario, mensagemDesenvolvedor), headers, HttpStatus.BAD_REQUEST, request);
     }
 
 
