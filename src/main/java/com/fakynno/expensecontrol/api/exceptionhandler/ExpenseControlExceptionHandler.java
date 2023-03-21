@@ -13,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @ControllerAdvice
@@ -28,7 +29,8 @@ public class ExpenseControlExceptionHandler extends ResponseEntityExceptionHandl
         String mensagemUsuario = messageSource.getMessage("mensagem.invalida", null,
                 LocaleContextHolder.getLocale());
         String mensagemDesenvolvedor = ex.getCause().toString();
-        return handleExceptionInternal(ex, new Erro(mensagemUsuario, mensagemDesenvolvedor), headers, HttpStatus.BAD_REQUEST, request);
+        List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+        return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
     }
 
     @Override
