@@ -15,8 +15,19 @@ public class Pessoa {
     @Size(min = 3, max = 50)
     private String nome;
 
+    @NotNull
+    private Boolean ativo;
+
     @Embedded
     private Endereco endereco;
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
 
     public Endereco getEndereco() {
         return endereco;
