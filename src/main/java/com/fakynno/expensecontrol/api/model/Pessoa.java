@@ -20,6 +20,15 @@ public class Pessoa {
     private Boolean ativo;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "logradouro", column = @Column(name = "endereco_logradouro")),
+            @AttributeOverride(name = "numero", column = @Column(name = "endereco_numero")),
+            @AttributeOverride(name = "complemento", column = @Column(name = "endereco_complemento")),
+            @AttributeOverride(name = "bairro", column = @Column(name = "endereco_bairro")),
+            @AttributeOverride(name = "cep", column = @Column(name = "endereco_cep")),
+            @AttributeOverride(name = "cidade", column = @Column(name = "endereco_cidade")),
+            @AttributeOverride(name = "estado", column = @Column(name = "endereco_estado"))
+    })
     private Endereco endereco;
 
     public Boolean getAtivo() {
