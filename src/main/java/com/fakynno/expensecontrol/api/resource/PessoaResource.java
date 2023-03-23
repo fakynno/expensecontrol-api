@@ -26,7 +26,7 @@ public class PessoaResource {
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> criarPessoa(@RequestBody Pessoa pessoa, HttpServletResponse response) {
+    public ResponseEntity<Pessoa> criarPessoa(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response) {
 
         Pessoa novaPessoa = pessoaRepository.save(pessoa);
 
