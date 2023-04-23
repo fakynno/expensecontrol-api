@@ -1,4 +1,4 @@
-package com.fakynno.expensecontrol.api.exceptionhandler;
+package com.fakynno.expensecontrol.api.exceptions.exceptionhandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
