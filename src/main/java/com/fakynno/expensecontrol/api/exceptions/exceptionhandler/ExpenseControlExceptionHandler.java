@@ -46,6 +46,17 @@ public class ExpenseControlExceptionHandler extends ResponseEntityExceptionHandl
         return handleExceptionInternal(ex, listaErros, headers, HttpStatus.BAD_REQUEST, request);
     }
 
+    @ExceptionHandler({ EmptyResultDataAccessException.class })
+    public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
+
+        String mensagemUsuario = messageSource.getMessage("recurso.nao-encontrado", null,
+                LocaleContextHolder.getLocale());
+        String mensagemDesenvolvedor = ex.toString();
+        List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+
+        return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
     private List<Erro> novaListaDeErros(BindingResult bindingResult) {
 
         List<Erro> erros = new ArrayList<>();
@@ -58,10 +69,6 @@ public class ExpenseControlExceptionHandler extends ResponseEntityExceptionHandl
 
         return erros;
     }
-
-    @ExceptionHandler({ EmptyResultDataAccessException.class })
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleEmptyResultDataAccessException() {}
 
     public static class Erro {
 
