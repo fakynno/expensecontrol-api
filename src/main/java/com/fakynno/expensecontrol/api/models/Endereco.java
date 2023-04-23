@@ -1,4 +1,4 @@
-package com.fakynno.expensecontrol.api.model;
+package com.fakynno.expensecontrol.api.models;
 
 import javax.persistence.Embeddable;
 
